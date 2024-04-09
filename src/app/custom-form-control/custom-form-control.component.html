@@ -1,0 +1,16 @@
+<h1>Custom Form Control</h1>
+
+<form [formGroup]="form">
+  <custom-input
+    formControlName="firstname"
+    label="Firstname"
+    inputId="firstname"
+  ></custom-input>
+  <custom-input
+    formControlName="lastname"
+    label="Lastname"
+    inputId="lastname"
+  ></custom-input>
+
+  <button type="submit" (click)="submit()">Submit</button>
+</form>

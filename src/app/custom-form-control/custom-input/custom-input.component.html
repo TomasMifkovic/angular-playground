@@ -1,0 +1,20 @@
+<div>
+  <label [for]="inputId">{{ label }}</label>
+
+  <br />
+
+  <input
+    [id]="inputId"
+    [value]="value"
+    [disabled]="isDisabled"
+    (blur)="onTouched?.(value)"
+    (input)="updateValue($event)"
+  />
+
+  <br />
+
+  @if (ngControl.invalid && (ngControl.dirty || ngControl.touched)) { @for (item
+  of ngControl.errors | keyvalue; track $index) {
+  <strong style="color: red">{{ item.key }} : {{ item.value | json }}</strong>
+  } }
+</div>
