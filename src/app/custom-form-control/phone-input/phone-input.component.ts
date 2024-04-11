@@ -27,6 +27,10 @@ export class PhoneInputComponent implements OnInit, OnDestroy {
     return this.parentFormGroup.control as FormGroup;
   }
 
+  get control() {
+    return this.formGroup.get(this.key)!;
+  }
+
   ngOnInit(): void {
     this.formGroup.addControl(
       this.key,

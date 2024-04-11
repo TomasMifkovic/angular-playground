@@ -2,4 +2,9 @@
   <label for="phone">{{ label }}</label>
   <br />
   <input id="phone" [formControlName]="key" />
+  <br />
+  @if (control.invalid && (control.dirty || control.touched)) { @for (item of
+  control.errors | keyvalue; track $index) {
+  <strong style="color: red">{{ item.key }} : {{ item.value | json }}</strong>
+  } }
 </div>
