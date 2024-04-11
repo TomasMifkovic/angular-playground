@@ -9,6 +9,7 @@ import {
 @Component({
   selector: 'phone-input',
   templateUrl: 'phone-input.component.html',
+  styleUrl: './phone-input.component.scss',
   viewProviders: [
     {
       provide: ControlContainer,
