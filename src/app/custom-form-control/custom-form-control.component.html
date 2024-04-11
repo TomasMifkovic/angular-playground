@@ -5,12 +5,22 @@
     formControlName="firstname"
     label="Firstname"
     inputId="firstname"
-  ></custom-input>
+  />
   <custom-input
     formControlName="lastname"
     label="Lastname"
     inputId="lastname"
-  ></custom-input>
+  />
 
+  <label for="email">Email</label>
+  <br />
+  <input id="email" placeholder="test@test.sk" formControlName="email" />
+
+  <br />
+
+  <input-wrapper key="phone"></input-wrapper>
+
+  <br />
   <button type="submit" (click)="submit()">Submit</button>
+  {{ form.value | json }}
 </form>

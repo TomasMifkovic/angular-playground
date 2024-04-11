@@ -16,6 +16,7 @@ export class CustomFormControlComponent implements OnInit {
       Validators.minLength(5),
       Validators.maxLength(10),
     ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
   });
 
   ngOnInit(): void {
