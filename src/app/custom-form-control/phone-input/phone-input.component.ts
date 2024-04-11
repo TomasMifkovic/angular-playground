@@ -7,8 +7,8 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'input-wrapper',
-  templateUrl: 'input-wrapper.component.html',
+  selector: 'phone-input',
+  templateUrl: 'phone-input.component.html',
   viewProviders: [
     {
       provide: ControlContainer,
@@ -16,8 +16,9 @@ import {
     },
   ],
 })
-export class InputWrapperComponent implements OnInit, OnDestroy {
-  @Input({required: true}) key!: string;
+export class PhoneInputComponent implements OnInit, OnDestroy {
+  @Input({ required: true }) key!: string;
+  @Input({ required: true }) label!: string;
 
   parentFormGroup = inject(ControlContainer);
 
@@ -28,7 +29,11 @@ export class InputWrapperComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.formGroup.addControl(
       this.key,
-      new FormControl('', [Validators.required, Validators.minLength(5)])
+      new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(10),
+      ])
     );
   }
 

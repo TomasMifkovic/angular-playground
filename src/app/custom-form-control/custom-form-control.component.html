@@ -12,13 +12,18 @@
     inputId="lastname"
   />
 
-  <label for="email">Email</label>
+  <div class="box">
+    <label for="email">Email</label>
+    <br />
+    <input id="email" placeholder="test@test.sk" formControlName="email" />
+  </div>
   <br />
-  <input id="email" placeholder="test@test.sk" formControlName="email" />
-
+  
+  <phone-input key="phone" label="Phone"></phone-input>
+  
   <br />
-
-  <input-wrapper key="phone"></input-wrapper>
+  
+  <phone-input key="complaint-phone" label="Complaint phone"></phone-input>
 
   <br />
   <button type="submit" (click)="submit()">Submit</button>
