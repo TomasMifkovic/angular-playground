@@ -1,0 +1,18 @@
+<div class="box">
+  @for (control of nationalityControls; track $index) {
+  <div>
+    <label>Country</label>
+    <select [formControl]="control">
+      @for (item of items; track $index) {
+      <option [ngValue]="item">
+        {{ item.value }}
+      </option>
+      }
+    </select>
+
+    <button (click)="removeControl($index)">Vymazat</button>
+  </div>
+  }
+
+  <button (click)="addControl()">Pridat narodnosť</button>
+</div>

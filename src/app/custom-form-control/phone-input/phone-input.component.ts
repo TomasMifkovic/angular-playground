@@ -1,10 +1,6 @@
 import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
-import {
-  ControlContainer,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { ControlContainer, FormControl, Validators } from '@angular/forms';
+import { BaseControlDirective } from '../base-control.directive';
 
 @Component({
   selector: 'phone-input',
@@ -17,15 +13,12 @@ import {
     },
   ],
 })
-export class PhoneInputComponent implements OnInit, OnDestroy {
+export class PhoneInputComponent
+  extends BaseControlDirective
+  implements OnInit, OnDestroy
+{
   @Input({ required: true }) key!: string;
   @Input({ required: true }) label!: string;
-
-  parentFormGroup = inject(ControlContainer);
-
-  get formGroup() {
-    return this.parentFormGroup.control as FormGroup;
-  }
 
   get control() {
     return this.formGroup.get(this.key)!;
