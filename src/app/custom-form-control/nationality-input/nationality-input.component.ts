@@ -24,15 +24,15 @@ export class NationalityInputComponent
   items = [
     {
       id: 1,
-      value: 'Slovensko',
+      value: 'Slovakia',
     },
     {
       id: 2,
-      value: 'Cesko',
+      value: 'Czech Republic',
     },
     {
       id: 3,
-      value: 'Rakusko',
+      value: 'Austria',
     },
   ];
 
