@@ -3,7 +3,7 @@
   <div>
     <label>Country</label>
     <select [formControl]="control">
-      @for (item of items; track $index) {
+      @for (item of nationalityService.getAll([]) | async; track $index) {
       <option [ngValue]="item">
         {{ item.value }}
       </option>

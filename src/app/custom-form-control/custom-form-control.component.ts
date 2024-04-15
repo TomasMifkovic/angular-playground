@@ -30,6 +30,6 @@ export class CustomFormControlComponent implements OnInit {
     if (this.form.invalid) {
       return this.form.markAllAsTouched();
     }
-    console.log(this.form.getRawValue());
+    const form = this.form.getRawValue();
   }
 }

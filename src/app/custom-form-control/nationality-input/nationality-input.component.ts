@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { BaseControlDirective } from '../base-control.directive';
+import { NationalityService } from './nationality.service';
 
 @Component({
   selector: 'nationality-input',
@@ -21,20 +22,7 @@ export class NationalityInputComponent
   extends BaseControlDirective
   implements OnInit, OnDestroy
 {
-  items = [
-    {
-      id: 1,
-      value: 'Slovakia',
-    },
-    {
-      id: 2,
-      value: 'Czech Republic',
-    },
-    {
-      id: 3,
-      value: 'Austria',
-    },
-  ];
+  public readonly nationalityService = inject(NationalityService);
 
   get formArray() {
     return this.formGroup.get('nationalities') as FormArray;
@@ -62,5 +50,8 @@ export class NationalityInputComponent
 
   removeControl(i: number) {
     this.formArray.removeAt(i);
+    if (this.formArray.length === 0) {
+      this.addControl();
+    }
   }
 }
