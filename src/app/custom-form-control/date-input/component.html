@@ -1,0 +1,14 @@
+<div class="box">
+  <custom-input
+    [formControlName]="inputKey"
+    [label]="inputLabel"
+    [inputId]="inputKey"
+  />
+  <br />
+
+  <div class="box">
+    <label [for]="checkboxKey">{{checkboxLabel}}</label>
+    <br />
+    <input type="checkbox" [id]="checkboxKey" [formControlName]="checkboxKey" />
+  </div>
+</div>

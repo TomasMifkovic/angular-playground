@@ -7,8 +7,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PhoneInputComponent } from './phone-input/phone-input.component';
 import { NationalityInputComponent } from './nationality-input/nationality-input.component';
 import { NationalityService } from './nationality-input/nationality.service';
+import { DateInputComponent } from './date-input/component';
 
-const components = [CustomFormControlComponent, CustomInputComponent, PhoneInputComponent, NationalityInputComponent];
+const components = [CustomFormControlComponent, CustomInputComponent, PhoneInputComponent, NationalityInputComponent, DateInputComponent];
 
 @NgModule({
     imports: [CommonModule, ReactiveFormsModule],

@@ -28,7 +28,10 @@
   <br />
 
   <nationality-input key="nationalities"></nationality-input>
-  
+
+  <date-input inputKey="dateOfBirth" checkboxKey="dateOfBirthUnknown" inputLabel="Date of birth" checkboxLabel="Date of birth unknown" />
+  <date-input inputKey="dateOfDeath" checkboxKey="dateOfDeathUnknown" inputLabel="Date of death" checkboxLabel="Date of death unknown" />
+
   <button type="submit" (click)="submit()">Submit</button>
-  {{ form.value | json }}
+  {{ value | json }}
 </form>

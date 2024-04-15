@@ -19,9 +19,11 @@ export class CustomFormControlComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
+  public value = this.form.getRawValue();
+
   ngOnInit(): void {
-    this.form.valueChanges.subscribe((_) =>
-      console.log(this.form.getRawValue())
+    this.form.valueChanges.subscribe(
+      (_) => (this.value = this.form.getRawValue())
     );
   }
 
@@ -30,6 +32,6 @@ export class CustomFormControlComponent implements OnInit {
     if (this.form.invalid) {
       return this.form.markAllAsTouched();
     }
-    const form = this.form.getRawValue();
+    console.log(this.form.getRawValue());
   }
 }
