@@ -1,0 +1,52 @@
+<h2>{{ heading }} - {{ countOfFilledForms }}</h2>
+
+<div>
+  @if (innerFormGroups.length) {
+  <!---->
+  @for (formGroup of innerFormGroups; track $index) {
+  <!----->
+  @if (editMode[$index] || (addMode && $index === innerFormGroups.length - 1)) {
+  <!----->
+
+  <ng-container
+    *ngTemplateOutlet="formTemplateRef; context: { $implicit: formGroup }"
+  />
+
+  <button (click)="cancel($index)">Cancel</button>
+  <button (click)="add($index)">Save</button>
+  <!---->
+  } @else {
+  <!---->
+  <div>
+    @for (item of displayFn(formGroup.getRawValue()); track $index) {
+    <!---->
+    <div>
+      <span
+        ><strong>{{ item.label }}</strong></span
+      >: <span>{{ item.value }}</span>
+    </div>
+    <!---->
+    }
+    <button (click)="edit($index)">Edit</button>
+    <button (click)="removeControl($index)">Delete</button>
+    @if ($index + 1 != innerFormGroups.length) {
+    <p>_____________________________________________________</p>
+    }
+  </div>
+  <!---->
+  }
+  <!----->
+  }
+  <!---->
+  } @else {
+  <p>No entries</p>
+  } @if (!addMode) {
+  <!---->
+  <p>_____________________________________________</p>
+
+  <button (click)="addControl()">
+    {{ addButtonLabel }}
+  </button>
+  <!---->
+  }
+</div>

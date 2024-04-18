@@ -34,4 +34,20 @@ export class CustomFormControlComponent implements OnInit {
     }
     console.log(this.form.getRawValue());
   }
+
+  alliasFormFactory = (): FormGroup => {
+    return new FormGroup({
+      firstname: new FormControl('', [Validators.required]),
+      lastname: new FormControl('', [Validators.required]),
+    });
+  };
+
+  displayAllias = (
+    alias: Record<string, any>
+  ): Array<{ label: string; value: string }> => {
+    return Object.keys(alias).map((key) => ({
+      label: key,
+      value: alias[key],
+    }));
+  };
 }

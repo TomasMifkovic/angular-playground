@@ -29,9 +29,44 @@
 
   <nationality-input key="nationalities"></nationality-input>
 
-  <date-input inputKey="dateOfBirth" checkboxKey="dateOfBirthUnknown" inputLabel="Date of birth" checkboxLabel="Date of birth unknown" />
-  <date-input inputKey="dateOfDeath" checkboxKey="dateOfDeathUnknown" inputLabel="Date of death" checkboxLabel="Date of death unknown" />
+  <date-input
+    inputKey="dateOfBirth"
+    checkboxKey="dateOfBirthUnknown"
+    inputLabel="Date of birth"
+    checkboxLabel="Date of birth unknown"
+  />
+  <date-input
+    inputKey="dateOfDeath"
+    checkboxKey="dateOfDeathUnknown"
+    inputLabel="Date of death"
+    checkboxLabel="Date of death unknown"
+  />
 
+  <br /><br /><br /><br /><br /><br />
+
+  <multi-input
+    addButtonLabel="Add new allias"
+    heading="Alliases"
+    key="alliases"
+    [newFormGroupFactory]="alliasFormFactory"
+    [displayFn]="displayAllias"
+  >
+    <ng-template #formTemplate let-formGroup>
+      <div [formGroup]="formGroup">
+        <custom-input
+          formControlName="firstname"
+          label="Firstname"
+          inputId="firstname"
+        />
+        <custom-input
+          formControlName="lastname"
+          label="Lastname"
+          inputId="lastname"
+        />
+      </div>
+    </ng-template>
+  </multi-input>
+  <br /><br /><br /><br /><br /><br />
   <button type="submit" (click)="submit()">Submit</button>
   {{ value | json }}
 </form>
