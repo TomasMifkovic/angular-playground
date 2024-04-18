@@ -27,7 +27,6 @@ export class MultiInputComponent
   @ContentChild('displayTemplate') displayTemplateRef: TemplateRef<any> | null =
     null;
 
-  countOfFilledForms = 0;
   addForm: null | FormGroup = null;
   editMode: Record<number, any> = {};
 
@@ -68,7 +67,6 @@ export class MultiInputComponent
 
     this.formArray.push(this.addForm);
     this.addForm = null;
-    this.countOfFilledForms = this.innerFormGroups.length;
   }
 
   edit(index: number) {
@@ -90,6 +88,5 @@ export class MultiInputComponent
 
   removeControl(i: number) {
     this.formArray.removeAt(i);
-    this.countOfFilledForms = this.innerFormGroups.length;
   }
 }
