@@ -49,8 +49,19 @@
     heading="Alliases"
     key="alliases"
     [newFormGroupFactory]="alliasFormFactory"
-    [displayFn]="displayAllias"
   >
+    <ng-template #displayTemplate let-value>
+      @for (item of value | keyvalue; track $index) {
+      <!---->
+      <div>
+        <span
+          ><strong>{{ item.key }}</strong></span
+        >: <span>{{ item.value }}</span>
+      </div>
+      <!---->
+      }
+    </ng-template>
+
     <ng-template #formTemplate let-formGroup>
       <div [formGroup]="formGroup">
         <custom-input

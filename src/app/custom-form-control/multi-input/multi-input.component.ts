@@ -22,11 +22,9 @@ export class MultiInputComponent
   @Input({ required: true }) heading!: string;
   @Input({ required: true }) addButtonLabel!: string;
   @Input({ required: true }) newFormGroupFactory!: () => FormGroup;
-  @Input({ required: true }) displayFn!: (
-    value: Record<string, any>
-  ) => Array<{ label: string; value: string }>;
 
   @ContentChild('formTemplate') formTemplateRef: TemplateRef<any> | null = null;
+  @ContentChild('displayTemplate') displayTemplateRef: TemplateRef<any> | null = null;
 
   countOfFilledForms = 0;
   addMode = false;

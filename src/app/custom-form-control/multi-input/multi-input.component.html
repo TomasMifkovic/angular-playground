@@ -18,15 +18,12 @@
   } @else {
   <!---->
   <div>
-    @for (item of displayFn(formGroup.getRawValue()); track $index) {
-    <!---->
-    <div>
-      <span
-        ><strong>{{ item.label }}</strong></span
-      >: <span>{{ item.value }}</span>
-    </div>
-    <!---->
-    }
+    <ng-container
+      *ngTemplateOutlet="
+        displayTemplateRef;
+        context: { $implicit: formGroup.value }
+      " />
+    
     <button (click)="edit($index)">Edit</button>
     <button (click)="removeControl($index)">Delete</button>
     @if ($index + 1 != innerFormGroups.length) {
