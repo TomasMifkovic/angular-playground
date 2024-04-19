@@ -1,19 +1,18 @@
-<h2>{{ heading }} - {{ countOfFilledForms }}</h2>
+<h2>{{ heading }} - {{ innerFormGroups.length }}</h2>
 
 <div>
   @if (innerFormGroups.length) {
   <!---->
   @for (formGroup of innerFormGroups; track $index) {
   <!----->
-  @if (editMode[$index] || (addMode && $index === innerFormGroups.length - 1)) {
+  @if (editMode[$index]) {
   <!----->
-
   <ng-container
     *ngTemplateOutlet="formTemplateRef; context: { $implicit: formGroup }"
   />
 
   <button (click)="cancel($index)">Cancel</button>
-  <button (click)="add($index)">Save</button>
+  <button (click)="save($index)">Save</button>
   <!---->
   } @else {
   <!---->
@@ -22,8 +21,9 @@
       *ngTemplateOutlet="
         displayTemplateRef;
         context: { $implicit: formGroup.value }
-      " />
-    
+      "
+    />
+
     <button (click)="edit($index)">Edit</button>
     <button (click)="removeControl($index)">Delete</button>
     @if ($index + 1 != innerFormGroups.length) {
@@ -33,11 +33,32 @@
   <!---->
   }
   <!----->
-  }
+  } @if (addForm) {
   <!---->
+  <ng-container
+    *ngTemplateOutlet="formTemplateRef; context: { $implicit: addForm }"
+  />
+
+  <button (click)="cancelAdd()">Cancel</button>
+  <button (click)="saveAdd()">Save</button>
+  <!----->
+  }
+
+  <!---->
+  } @else if (addForm) {
+  <!----->
+  <ng-container
+    *ngTemplateOutlet="formTemplateRef; context: { $implicit: addForm }"
+  />
+
+  <button (click)="cancelAdd()">Cancel</button>
+  <button (click)="saveAdd()">Save</button>
+  <!----->
   } @else {
+  <!----->
   <p>No entries</p>
-  } @if (!addMode) {
+  <!----->
+  } @if (!addForm) {
   <!---->
   <p>_____________________________________________</p>
 

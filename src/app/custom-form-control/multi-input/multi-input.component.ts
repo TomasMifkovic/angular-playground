@@ -24,10 +24,10 @@ export class MultiInputComponent
   @Input({ required: true }) newFormGroupFactory!: () => FormGroup;
 
   @ContentChild('formTemplate') formTemplateRef: TemplateRef<any> | null = null;
-  @ContentChild('displayTemplate') displayTemplateRef: TemplateRef<any> | null = null;
+  @ContentChild('displayTemplate') displayTemplateRef: TemplateRef<any> | null =
+    null;
 
-  countOfFilledForms = 0;
-  addMode = false;
+  addForm: null | FormGroup = null;
   editMode: Record<number, any> = {};
 
   get formArray() {
@@ -46,19 +46,27 @@ export class MultiInputComponent
     this.formGroup.removeControl(this.key);
   }
 
-  add(index: number) {
+  save(index: number) {
     this.innerFormGroups[index].updateValueAndValidity();
     if (this.innerFormGroups[index].invalid) {
       this.innerFormGroups[index].markAllAsTouched();
       return;
     }
 
-    if (this.editMode[index]) {
-      this.editMode[index] = undefined;
-    } else {
-      this.addMode = false;
-      this.countOfFilledForms = this.innerFormGroups.length;
+    this.editMode[index] = undefined;
+  }
+
+  saveAdd() {
+    if (!this.addForm) return;
+    this.addForm.updateValueAndValidity();
+
+    if (this.addForm.invalid) {
+      this.addForm.markAllAsTouched();
+      return;
     }
+
+    this.formArray.push(this.addForm);
+    this.addForm = null;
   }
 
   edit(index: number) {
@@ -66,24 +74,19 @@ export class MultiInputComponent
   }
 
   cancel(index: number) {
-    if (this.editMode[index]) {
-      this.innerFormGroups[index].patchValue(this.editMode[index]);
-      this.editMode[index] = undefined;
-      return;
-    }
-    this.addMode = false;
-    this.removeControl(index);
+    this.innerFormGroups[index].patchValue(this.editMode[index]);
+    this.editMode[index] = undefined;
+  }
+
+  cancelAdd() {
+    this.addForm = null;
   }
 
   addControl() {
-    this.addMode = true;
-    this.formArray.push(this.newFormGroupFactory());
+    this.addForm = this.newFormGroupFactory();
   }
 
   removeControl(i: number) {
     this.formArray.removeAt(i);
-    this.countOfFilledForms = this.addMode
-      ? this.innerFormGroups.length - 1
-      : this.innerFormGroups.length;
   }
 }
